@@ -1,4 +1,4 @@
-# Mental Health Explorer 🧠🌱
+# Mental Health Explorer 
 
 A professional-grade, full-stack data application designed to visualize workplace mental health insights and provide AI-powered narrative analysis. Built with a focus on empathy, data integrity, and actionable support.
 
@@ -58,4 +58,4 @@ mental_health_explorer/
 This project is licensed under the MIT License.
 
 ---
-Built with ❤️ using [NextToken](https://nexttoken.co)
+
