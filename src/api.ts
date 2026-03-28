@@ -22,8 +22,8 @@ function getUserFacingErrorMessage(status: number): string {
   return "Request failed. Please try again.";
 }
 
-function cacheKey(func: string, args: Record<string, any>, module: string): string {
-  return `rpc:${module}:${func}:${JSON.stringify(args)}`;
+function cacheKey(func: string, args: Record<string, any>): string {
+  return `rpc:${func}:${JSON.stringify(args)}`;
 }
 
 function getCached<T>(key: string): T | undefined {
@@ -44,11 +44,11 @@ function setCache(key: string, data: unknown): void {
   }
 }
 
-async function fetchRpc<T>(config: AppConfig, resolvedModule: string, func: string, args: Record<string, any>): Promise<T> {
+async function fetchRpc<T>(config: AppConfig, func: string, args: Record<string, any>): Promise<T> {
   const res = await fetch(config.dataEndpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Run-Id": config.runId || "" },
-    body: JSON.stringify({ module: resolvedModule, func, args }),
+    body: JSON.stringify({ func, args }),
     credentials: "include",
   });
 
@@ -98,21 +98,20 @@ export function invalidateCache(funcNames?: string[]): void {
 
 export async function rpcCall<T = any>({ func, args = {}, module }: RpcParams): Promise<T> {
   const config = getConfig();
-  const resolvedModule = module || `apps.${config.appName}.backend.main`;
-  const key = cacheKey(func, args, resolvedModule);
+  const key = cacheKey(func, args);
 
   const cached = getCached<T>(key);
   if (cached !== undefined) {
-    console.log("[CACHE_HIT]", { func, module: resolvedModule });
+    console.log("[CACHE_HIT]", { func });
     // Return cached data immediately, refresh in background
-    fetchRpc<T>(config, resolvedModule, func, args)
+    fetchRpc<T>(config, func, args)
       .then((fresh) => setCache(key, fresh))
       .catch(() => {});
     return cached;
   }
 
-  console.log("[FETCH_START]", { func, module: resolvedModule });
-  const data = await fetchRpc<T>(config, resolvedModule, func, args);
+  console.log("[FETCH_START]", { func });
+  const data = await fetchRpc<T>(config, func, args);
   setCache(key, data);
   return data;
 }

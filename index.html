@@ -11,5 +11,13 @@
   <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Initialize __APP_CONFIG__ for frontend API integration
+      window.__APP_CONFIG__ = {
+        appName: "mental_health_explorer",
+        dataEndpoint: "/api",
+        runId: "local-run-" + Date.now()
+      };
+    </script>
   </body>
 </html>

@@ -1,16 +1,20 @@
 import json
 import os
 import hashlib
+import tempfile
 from nexttoken import NextToken
 from .db import _get_db
 
-CACHE_DIR = "apps/mental_health_explorer/backend/data/cache"
+# Use /tmp for Vercel serverless compatibility
+CACHE_DIR = os.path.join(tempfile.gettempdir(), "mental_health_explorer_cache")
 
 def _cache_key(prefix, **kwargs):
+    """Generate a cache key from prefix and kwargs."""
     raw = json.dumps(kwargs, sort_keys=True)
     return f"{prefix}_{hashlib.sha256(raw.encode()).hexdigest()[:12]}"
 
 def _read_cache(key):
+    """Read from cache file."""
     path = os.path.join(CACHE_DIR, f"{key}.json")
     if os.path.exists(path):
         print(f"[BACKEND_STEP] cache_hit for key={key}")
@@ -20,6 +24,7 @@ def _read_cache(key):
     return None
 
 def _write_cache(key, data):
+    """Write to cache file."""
     os.makedirs(CACHE_DIR, exist_ok=True)
     path = os.path.join(CACHE_DIR, f"{key}.json")
     with open(path, "w") as f:
@@ -27,6 +32,7 @@ def _write_cache(key, data):
     print(f"[BACKEND_STEP] cache_write for key={key}")
 
 def analyze_text_ai(text: str):
+    """Analyze text using AI with caching."""
     print(f"[BACKEND_START] analyze_text_ai for text len={len(text)}")
     
     cache_key = _cache_key("analysis", text=text)
@@ -34,8 +40,9 @@ def analyze_text_ai(text: str):
     if cached:
         return cached
 
-    client = NextToken()
-    prompt = f"""Analyze the following text for mental health indicators and workplace wellness context.
+    try:
+        client = NextToken()
+        prompt = f"""Analyze the following text for mental health indicators and workplace wellness context.
 Text: "{text}"
 
 Return a JSON object with:
@@ -47,7 +54,6 @@ Return a JSON object with:
 - actionable_steps (list of strings: 2-3 specific, immediate steps the user can take)
 - analysis_summary (string: 2-3 sentence empathetic summary)
 """
-    try:
         response = client.chat.completions.create(
             model="gemini-2.5-flash-lite",
             messages=[{"role": "user", "content": prompt}],
@@ -60,11 +66,10 @@ Return a JSON object with:
         return result
     except Exception as e:
         print(f"[BACKEND_ERROR] AI analysis failed: {e}")
-        # Default fallback if LLM fails, but in production we might want to raise
-        # For this requirement, we raise so it's not hardcoded.
         raise
 
 def get_survey_stats_logic():
+    """Get survey statistics from database."""
     print("[BACKEND_START] get_survey_stats_logic")
     conn = _get_db()
     try:
@@ -86,6 +91,7 @@ def get_survey_stats_logic():
         conn.close()
 
 def get_survey_distributions_logic():
+    """Get survey distribution data from database."""
     print("[BACKEND_START] get_survey_distributions_logic")
     conn = _get_db()
     try:

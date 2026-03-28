@@ -1,10 +1,13 @@
 import sqlite3
 import os
+import tempfile
 
-DB_DIR = "apps/mental_health_explorer/backend/data/db"
+# Use /tmp for Vercel serverless compatibility
+DB_DIR = os.path.join(tempfile.gettempdir(), "mental_health_explorer_db")
 DB_PATH = os.path.join(DB_DIR, "app.db")
 
 def _get_db():
+    """Get or create database connection."""
     os.makedirs(DB_DIR, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -13,6 +16,7 @@ def _get_db():
     return conn
 
 def init_db():
+    """Initialize database tables."""
     conn = _get_db()
     try:
         # survey_data: id, gender, country, treatment, work_interference, etc.
@@ -53,6 +57,7 @@ def init_db():
         conn.close()
 
 def seed_data_if_empty():
+    """Seed database with initial data if empty."""
     conn = _get_db()
     try:
         count = conn.execute("SELECT COUNT(*) FROM survey_data").fetchone()[0]
@@ -89,5 +94,6 @@ def seed_data_if_empty():
     finally:
         conn.close()
 
+# Initialize database on module import
 init_db()
 seed_data_if_empty()

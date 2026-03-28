@@ -16,9 +16,9 @@ A professional-grade, full-stack data application designed to visualize workplac
 ## 🛠 Tech Stack
 
 - **Frontend**: React (Vite), Tailwind CSS, Shadcn/UI, Recharts, Lucide Icons.
-- **Backend**: Python (FastAPI), SQLAlchemy/Psycopg2.
+- **Backend**: Python (FastAPI), SQLite (with Vercel /tmp compatibility).
 - **AI/ML**: NextToken SDK (Orchestrating Google Gemini 2.5 Flash).
-- **Database**: Vercel Postgres (Production) / SQLite (Local Dev).
+- **Database**: SQLite with automatic seeding (Vercel serverless compatible).
 - **Deployment**: Vercel Serverless Functions.
 
 ## 📦 Project Structure
@@ -36,26 +36,123 @@ mental_health_explorer/
 │   └── api.ts            # Frontend API Client
 ├── public/assets/        # High-quality Visual Assets
 ├── vercel.json           # Routing Configuration
-└── requirements.txt      # Backend Dependencies
+├── requirements.txt      # Backend Dependencies
+└── index.html            # Frontend Entry Point
 ```
 
 ## ⚙️ Setup & Deployment
 
 ### Local Development
-1. Clone the repository.
-2. Install frontend dependencies: `npm install`.
-3. Install backend dependencies: `pip install -r requirements.txt`.
-4. Run the development server: `npm run dev`.
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd mental-health-explorer
+   ```
+
+2. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at `http://localhost:5173` (frontend) with the backend API at `/api`.
 
 ### Vercel Deployment
-1. Connect this repository to your **Vercel** dashboard.
-2. Add your **Environment Variables**:
-   - `NEXTTOKEN_API_KEY`: Your NextToken platform key.
-3. In the Vercel **Storage** tab, create and connect a **Vercel Postgres** database.
-4. Deploy!
+
+#### Prerequisites
+- A Vercel account (https://vercel.com)
+- A NextToken API key (https://nexttoken.dev)
+- This repository pushed to GitHub
+
+#### Deployment Steps
+
+1. **Connect Repository to Vercel**:
+   - Go to https://vercel.com/new
+   - Select "Import Git Repository"
+   - Choose this repository
+   - Click "Import"
+
+2. **Configure Environment Variables**:
+   - In the Vercel dashboard, go to **Settings** → **Environment Variables**
+   - Add the following variable:
+     - `NEXTTOKEN_API_KEY`: Your NextToken platform API key
+   - Click "Save"
+
+3. **Deploy**:
+   - Click the "Deploy" button
+   - Vercel will automatically build and deploy your application
+   - Your app will be live at `https://<your-project>.vercel.app`
+
+#### Important Notes
+
+- **Database**: The application uses SQLite stored in Vercel's `/tmp` directory. Data is automatically seeded on first run.
+- **API Key**: The `NEXTTOKEN_API_KEY` is required for the AI text analysis feature to work.
+- **CORS**: All origins are allowed for development. For production, consider restricting CORS in `api/index.py`.
+
+## 🔧 Key Fixes for Vercel Compatibility
+
+This version includes the following fixes for seamless Vercel deployment:
+
+1. **Database Path**: Changed from nested app structure to Vercel-compatible `/tmp` directory
+2. **API Configuration**: Simplified RPC endpoint to `/api` with proper JSON request/response handling
+3. **Frontend Config**: Added `__APP_CONFIG__` initialization in `index.html`
+4. **Dependencies**: Removed `sqlite3` from `requirements.txt` (built-in Python module)
+5. **CORS**: Configured for serverless environment
+6. **Caching**: Uses `/tmp` for AI analysis cache
+
+## 📝 API Endpoints
+
+### POST /api
+Main RPC endpoint for all backend operations.
+
+**Request Format**:
+```json
+{
+  "func": "function_name",
+  "args": { "param1": "value1" }
+}
+```
+
+**Available Functions**:
+- `get_survey_stats`: Returns survey statistics
+- `get_survey_distributions`: Returns distribution data by gender, country, treatment
+- `get_social_media_analysis`: Returns social media insights
+- `analyze_text`: AI-powered text analysis (requires NEXTTOKEN_API_KEY)
+- `submit_feedback`: Submit user feedback
+- `get_feedback_logs`: Retrieve feedback history
+
+### GET /api/health
+Health check endpoint for monitoring.
+
+## 🚀 Performance & Optimization
+
+- **Caching**: AI analysis results are cached in `/tmp` to reduce API calls
+- **Session Storage**: Frontend caches API responses in browser session storage
+- **Database Indexing**: Survey data is indexed for fast queries
+- **Lazy Loading**: Dashboard charts load asynchronously
+
+## 🔐 Security Considerations
+
+- **Environment Variables**: All sensitive keys (NEXTTOKEN_API_KEY) are stored as Vercel environment variables
+- **CORS**: Configured to accept all origins (update for production)
+- **Input Validation**: Backend validates all RPC function names and parameters
+- **Error Handling**: Sensitive errors are sanitized before sending to frontend
 
 ## 📄 License
+
 This project is licensed under the MIT License.
 
 ---
 
+**Last Updated**: March 2026
+**Status**: Production Ready for Vercel Deployment
