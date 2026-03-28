@@ -2,9 +2,6 @@
   "framework": "vite",
   "buildCommand": "pnpm install --frozen-lockfile && pnpm build",
   "outputDirectory": "dist",
-  "env": {
-    "NEXTTOKEN_API_KEY": "@nexttoken_api_key"
-  },
   "functions": {
     "api/index.py": {
       "runtime": "python3.11"
