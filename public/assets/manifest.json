@@ -1,0 +1,178 @@
+{
+  "react_icons": [
+    {
+      "brand": "Google Gemini",
+      "export_name": "SiGooglegemini",
+      "usage": "ai_provider_icon",
+      "reason": "Official Gemini icon for AI integration sections"
+    },
+    {
+      "brand": "SQLite",
+      "export_name": "SiSqlite",
+      "usage": "tech_badge",
+      "reason": "Standard SQLite icon for technical stack rows"
+    },
+    {
+      "brand": "React",
+      "export_name": "SiReact",
+      "usage": "tech_badge",
+      "reason": "Official React icon"
+    },
+    {
+      "brand": "Tailwind CSS",
+      "export_name": "SiTailwindcss",
+      "usage": "tech_badge",
+      "reason": "Official Tailwind icon"
+    }
+  ],
+  "downloaded_assets": [
+    {
+      "id": "hero-office-1",
+      "kind": "photo",
+      "filename": "hero-office-1.jpg",
+      "title": "Modern Calm Therapist Office",
+      "description": "Professional therapist office with soft lighting and greenery",
+      "visual_description": "A wide shot of a modern, bright office. A therapist is sitting in a black leather chair facing a client on a green velvet sofa. There is a large green plant in the center and warm light from a designer floor lamp. The atmosphere is professional and calming.",
+      "color_notes": "Dominant: soft whites, sage green, and warm wood tones. Matches the 'green/teal' theme perfectly.",
+      "mood": "Professional, calming, empathetic",
+      "placement": "hero",
+      "recommended": true,
+      "alt_text": "A professional therapist meeting a client in a calming modern office",
+      "dimensions": "1200x400",
+      "source_page_url": "https://www.pexels.com/photo/a-sad-woman-sitting-on-a-sofa-7699407/",
+      "provider": "Pexels",
+      "photographer": "MART PRODUCTION",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Excellent composition for a hero section; clearly portrays a safe professional space without being overly clinical."
+    },
+    {
+      "id": "hero-office-2",
+      "kind": "photo",
+      "filename": "hero-office-2.jpg",
+      "title": "Empathetic Support Session",
+      "description": "Close up of a supportive therapist listening during a session",
+      "visual_description": "A bright indoor scene showing a female therapist with glasses smiling warmly while taking notes on a clipboard, looking towards a client (back to camera). Soft natural light fills the room.",
+      "color_notes": "Bright whites and soft grays. Very clean and airy.",
+      "mood": "Empathetic, warm, professional",
+      "placement": "hero",
+      "recommended": false,
+      "alt_text": "A therapist listening empathetically to a client",
+      "dimensions": "1200x400",
+      "source_page_url": "https://www.pexels.com/photo/a-woman-sitting-in-a-chair-talking-to-another-woman-23496505/",
+      "provider": "Pexels",
+      "photographer": "Vitaly Gariev",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Strong focus on the 'empathy' aspect of the app; good alternative if a human-centric hero is preferred."
+    },
+    {
+      "id": "card-network-1",
+      "kind": "photo",
+      "filename": "card-network-1.jpg",
+      "title": "Digital Connection Network",
+      "description": "Abstract glowing spheres connected by light rays",
+      "visual_description": "Glowing digital spheres (nodes) connected by sharp lines of light against a deep teal/blue background. Represents social network analysis and interconnectedness.",
+      "color_notes": "Teal and deep blue palette. High contrast.",
+      "mood": "Technical, modern, connected",
+      "placement": "card_media",
+      "recommended": true,
+      "alt_text": "Abstract visualization of interconnected digital nodes",
+      "dimensions": "600x400",
+      "source_page_url": "https://www.pexels.com/photo/3d-image-of-a-clear-glass-ball-14314638/",
+      "provider": "Pexels",
+      "photographer": "Merlin Lightpainting",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Directly matches the 'social media analysis' context with a high-quality abstract network visual."
+    },
+    {
+      "id": "card-network-2",
+      "kind": "photo",
+      "filename": "card-network-2.jpg",
+      "title": "Neural Network Illustration",
+      "description": "Minimalist abstract lines representing data flow",
+      "visual_description": "Thin, flowing silver lines on a light gray background connecting tiny nodes. Very minimal and clean.",
+      "color_notes": "Light gray and silver. Extremely neutral.",
+      "mood": "Minimalist, clean, subtle",
+      "placement": "card_media",
+      "recommended": false,
+      "alt_text": "Minimalist abstract neural network lines",
+      "dimensions": "600x400",
+      "source_page_url": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-17483870/",
+      "provider": "Pexels",
+      "photographer": "Google DeepMind",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Good for sections where a more subtle, less 'tech-heavy' connection visual is needed."
+    },
+    {
+      "id": "bg-texture-1",
+      "kind": "photo",
+      "filename": "bg-texture-1.jpg",
+      "title": "Calming Teal Mesh Gradient",
+      "description": "Extremely soft mesh gradient in light teal and white",
+      "visual_description": "A very soft, ethereal blend of light teal/cyan and off-white. No sharp lines, just a gentle wash of color.",
+      "color_notes": "Teal #CEF6F5 to white. Perfect for background washes.",
+      "mood": "Calming, peaceful",
+      "placement": "background",
+      "recommended": true,
+      "alt_text": "Soft calming teal gradient texture",
+      "dimensions": "1200x800",
+      "source_page_url": "https://www.pexels.com/photo/teal-gradient-background-7130558/",
+      "provider": "Pexels",
+      "photographer": "Codioful",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Matches the app's teal/green primary theme and 'calming' mood requirements exactly."
+    },
+    {
+      "id": "bg-texture-2",
+      "kind": "photo",
+      "filename": "bg-texture-2.jpg",
+      "title": "Muted Green Gradient",
+      "description": "Soft gradient blending muted green and sage tones",
+      "visual_description": "A smooth gradient transitioning from a deeper sage green to a light mint. Soft and organic feel.",
+      "color_notes": "Sage green #81BDB4 to mint. Organic tones.",
+      "mood": "Organic, grounded, calm",
+      "placement": "background",
+      "recommended": false,
+      "alt_text": "Soft sage green gradient background",
+      "dimensions": "1200x800",
+      "source_page_url": "https://www.pexels.com/photo/green-gradient-6985277/",
+      "provider": "Pexels",
+      "photographer": "Codioful",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Strong alternative that leans more into the 'green' primary color for a more grounded feel."
+    },
+    {
+      "id": "logo-google",
+      "kind": "downloaded_logo",
+      "filename": "logo-google.png",
+      "title": "Google Logo",
+      "placement": "footer",
+      "dimensions": "intrinsic",
+      "provider": "get_logos",
+      "verified_via": "file_size_check_only",
+      "recommended": true
+    },
+    {
+      "id": "logo-react",
+      "kind": "downloaded_logo",
+      "filename": "logo-react.png",
+      "placement": "footer",
+      "dimensions": "intrinsic",
+      "provider": "get_logos",
+      "verified_via": "file_size_check_only",
+      "recommended": true
+    }
+  ],
+  "missing_assets": [],
+  "css_textures": [
+    {
+      "class_name": "bg-mesh",
+      "placement": "page_wrapper",
+      "description": "Soft radial gradients for the overall page background"
+    }
+  ],
+  "usage_notes": [
+    "Use 'hero-office-1.jpg' for the main dashboard header to set a professional, welcoming tone.",
+    "Layer content cards over 'bg-texture-1.jpg' with low opacity to create visual depth in white-space heavy sections.",
+    "Use SiGooglegemini from react-icons/si for the Gemini integration badge."
+  ]
+}
