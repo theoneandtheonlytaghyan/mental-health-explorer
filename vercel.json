@@ -1,10 +1,10 @@
 {
   "framework": "vite",
-  "buildCommand": "pnpm install --frozen-lockfile && pnpm build",
+  "buildCommand": "npm install && npm run build",
   "outputDirectory": "dist",
   "functions": {
     "api/index.py": {
-      "runtime": "python3.11"
+      "runtime": "python@3.11"
     }
   },
   "rewrites": [
