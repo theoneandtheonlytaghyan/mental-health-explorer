@@ -1,0 +1,6 @@
+nexttoken
+pandas
+numpy
+sqlite3
+fastapi
+uvicorn
