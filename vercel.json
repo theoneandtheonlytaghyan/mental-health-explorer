@@ -1,13 +1,17 @@
 {
   "framework": "vite",
-  "buildCommand": "npm install && npm run build",
+  "buildCommand": "pip install -r requirements.txt && npm install && npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/index.py": {
+    "api/*.py": {
       "runtime": "python@3.11"
     }
   },
   "rewrites": [
+    {
+      "source": "/api",
+      "destination": "/api/index.py"
+    },
     {
       "source": "/api/(.*)",
       "destination": "/api/index.py"

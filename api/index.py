@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import os
 import json
+import asyncio
 from .main import get_survey_stats, get_survey_distributions, get_social_media_analysis, analyze_text, submit_feedback, get_feedback_logs
 
 app = FastAPI()
@@ -38,6 +39,9 @@ async def rpc_handler(request: Request):
             raise HTTPException(status_code=404, detail=f"Function '{func_name}' not found")
         
         result = funcs[func_name](**args)
+        # Handle async functions
+        if asyncio.iscoroutine(result):
+            result = await result
         return JSONResponse(content=result)
     except HTTPException:
         raise
