@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.py" },
+    { "source": "/(.*)", "description": "Serve index.html for all other routes", "destination": "/index.html" }
+  ]
+}
