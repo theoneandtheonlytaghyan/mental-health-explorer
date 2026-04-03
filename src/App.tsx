@@ -37,7 +37,7 @@ const App: React.FC = () => {
         <div 
           className="absolute inset-0 opacity-20" 
           style={{ 
-            backgroundImage: "url('./assets/bg-texture-1.jpg')", 
+            backgroundImage: "url('/assets/bg-texture-1.jpg')", 
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }} 

@@ -65,7 +65,7 @@ export const SocialInsights: React.FC = () => {
       {/* Visual Header */}
       <div className="relative h-64 rounded-3xl overflow-hidden group">
         <img 
-          src="./assets/card-network-1.jpg" 
+          src="/assets/card-network-1.jpg" 
           alt="Digital Network" 
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />

@@ -65,8 +65,17 @@ Return a JSON object with:
         _write_cache(cache_key, result)
         return result
     except Exception as e:
-        print(f"[BACKEND_ERROR] AI analysis failed: {e}")
-        raise
+        print(f"[BACKEND_ERROR] AI analysis failed: {str(e)}")
+        # Return a graceful fallback instead of crashing
+        return {
+            "primary_concern": "Analysis Unavailable",
+            "severity_level": "Unknown",
+            "confidence_score": 0.0,
+            "sentiment_trend": "Unknown",
+            "support_needed": ["Please try again later"],
+            "actionable_steps": ["Check your internet connection", "Ensure API key is valid"],
+            "analysis_summary": f"We encountered an error during analysis: {str(e)}"
+        }
 
 def get_survey_stats_logic():
     """Get survey statistics from database."""

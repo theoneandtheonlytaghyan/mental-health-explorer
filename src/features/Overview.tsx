@@ -99,7 +99,7 @@ export const Overview: React.FC = () => {
       <div className="relative rounded-3xl overflow-hidden mb-8 group">
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-          style={{ backgroundImage: "url('./assets/hero-office-1.jpg')" }}
+          style={{ backgroundImage: "url('/assets/hero-office-1.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-teal-900/90 via-teal-900/40 to-transparent" />
         <div className="relative p-8 md:p-12 space-y-4 max-w-2xl">
