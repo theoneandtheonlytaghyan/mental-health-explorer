@@ -2,11 +2,6 @@
   "framework": "vite",
   "buildCommand": "pip install -r requirements.txt && npm install && npm run type-check && npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/*.py": {
-      "runtime": "python@3.11"
-    }
-  },
   "rewrites": [
     {
       "source": "/api",
